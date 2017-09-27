@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <!--查询门诊医生-->
+  <sql name="insert">
+    <value>
+      INSERT INTO
+      Book(Name)
+      VALUES 
+      (?name?)
+    </value>
+    <where field="name"> </where>
+  </sql>
+  
+</root>
