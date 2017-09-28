@@ -4,11 +4,45 @@
   <sql name="insert">
     <value>
       INSERT INTO
-      Book(Name)
+      Book(id,Name)
       VALUES 
-      (@name)
+      (@id,@name)
     </value>
     <where field="name"> </where>
+  </sql>
+  <sql name="delete">
+    <value>
+      DELETE FROM Book 
+    </value>
+    <where field="id"> id=@id</where>
+    <where field="name"> name=@name</where>
+  </sql>
+  <sql name="update">
+    <value>
+      UPDATE Book SET  Name=@name 
+    </value>
+    <where field="id"> id=@id</where>
+  </sql>
+  <sql name="select_all">
+    <value>
+      select * from book
+    </value>
+    <where field="id"> </where>
+  </sql>
+
+  <sql name="select_single">
+    <value>
+      select * from book
+    </value>
+    <where field="id"> id=@id </where>
+  </sql>
+  
+  <sql name="select_more">
+    <value>
+      select * from book
+    </value>
+    <where field="id"> id=@id </where>
+    <where field="name"> name=@name </where>
   </sql>
   
 </root>

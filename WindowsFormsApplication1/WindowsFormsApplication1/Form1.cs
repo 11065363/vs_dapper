@@ -1,15 +1,6 @@
-﻿using Dapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using WindowsFormsApplication1.doa;
-using WindowsFormsApplication1.model;
 using WindowsFormsApplication1.Util;
 
 namespace WindowsFormsApplication1
@@ -21,20 +12,24 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
+        
         //IDbConnection conn = new SqlConnection(connString);
-        //public static string connString= "server=127.0.0.1;database=MyDataBase;User=sa;password=123456;Connect Timeout=1000000";
-        public static string connString = "server=10.1.10.181;database=lhd;User=sa;password=abc_123;Connect Timeout=1000000";
-
         private void button1_Click(object sender, EventArgs e)
-        {
+        {/*
             string query = "INSERT INTO Book(Name)VALUES(@name)";
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("name", "wo");
            // book.Name = "wo";
             //对字典进行操作
-          //  conn.Execute(query, dic);
+            conn.Execute(query, dic);
             MessageBox.Show("完成");
-        }/*
+            */
+        }
+        #region //暂时不用
+
+        /*
+        
+        //public static string connString= "server=127.0.0.1;database=MyDataBase;User=sa;password=123456;Connect Timeout=1000000";
         book book = new book();
         //增
         public void insert() {  
@@ -69,12 +64,15 @@ namespace WindowsFormsApplication1
             string query2= "SELECT * FROM Book WHERE id = @id";
             book = conn.Query<book>(query2, new { id = 1 }).SingleOrDefault();
         }
-        book_doa doa = new book_doa();*/
+        */
+        book_doa doa = new book_doa();
+        #endregion
         private void button2_Click(object sender, EventArgs e)
         {
             Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("id", 1);
             dic.Add("name", "hello");
-           // doa.book_inp(dic);
+            doa.book_inp(dic);
             MessageBox.Show("完成");
         }
 
@@ -84,7 +82,6 @@ namespace WindowsFormsApplication1
             //（1）FormMain是类名称
             //（2）第二个参数是字符串信息
             LogHelper.WriteLog(typeof(Form1), "测试Log4Net日志是否写入");
-
             //第二种记录用法
             //（1）FormMain是类名称
             //（2）第二个参数是需要捕捉的异常块
@@ -92,6 +89,42 @@ namespace WindowsFormsApplication1
             //}catch(Exception ex){
             //    LogHelper.WriteLog(typeof(FormMain), ex);
             //}
+        }
+        //删
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("name", "hello");
+            doa.book_delete(dic);
+        }
+        //改
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("id", 1);
+            dic.Add("name", "hello2");
+            doa.book_update(dic);
+        }
+        //查
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            doa.book_select(dic);
+        }
+        //查单条
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("id", 1);
+            //dic.Add("name", "hello2");
+            doa.book_select_single(dic);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("name","ss");
+            doa.book_select_more(dic);
         }
     }
 }
