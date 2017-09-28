@@ -6,7 +6,7 @@
       INSERT INTO
       Book(Name)
       VALUES 
-      (?name?)
+      (@name)
     </value>
     <where field="name"> </where>
   </sql>

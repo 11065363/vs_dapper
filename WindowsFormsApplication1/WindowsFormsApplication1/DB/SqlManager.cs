@@ -64,6 +64,6 @@ namespace WindowsFormsApplication1.DB
         /// <summary>
         /// where集合
         /// </summary>
-        public Dictionary<string, string> Where { get; set; }
+        public Dictionary<string, string> Where { get; set;  }
     }
 }
