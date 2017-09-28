@@ -10,6 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using WindowsFormsApplication1.doa;
 using WindowsFormsApplication1.model;
+using WindowsFormsApplication1.Util;
 
 namespace WindowsFormsApplication1
 {
@@ -20,7 +21,7 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        IDbConnection conn = new SqlConnection(connString);
+        //IDbConnection conn = new SqlConnection(connString);
         //public static string connString= "server=127.0.0.1;database=MyDataBase;User=sa;password=123456;Connect Timeout=1000000";
         public static string connString = "server=10.1.10.181;database=lhd;User=sa;password=abc_123;Connect Timeout=1000000";
 
@@ -29,11 +30,11 @@ namespace WindowsFormsApplication1
             string query = "INSERT INTO Book(Name)VALUES(@name)";
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("name", "wo");
-            book.Name = "wo";
+           // book.Name = "wo";
             //对字典进行操作
-            conn.Execute(query, dic);
+          //  conn.Execute(query, dic);
             MessageBox.Show("完成");
-        }
+        }/*
         book book = new book();
         //增
         public void insert() {  
@@ -68,13 +69,29 @@ namespace WindowsFormsApplication1
             string query2= "SELECT * FROM Book WHERE id = @id";
             book = conn.Query<book>(query2, new { id = 1 }).SingleOrDefault();
         }
-        book_doa doa = new book_doa();
+        book_doa doa = new book_doa();*/
         private void button2_Click(object sender, EventArgs e)
         {
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("name", "hello");
-            doa.book_inp(dic);
+           // doa.book_inp(dic);
             MessageBox.Show("完成");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //第一种记录用法
+            //（1）FormMain是类名称
+            //（2）第二个参数是字符串信息
+            LogHelper.WriteLog(typeof(Form1), "测试Log4Net日志是否写入");
+
+            //第二种记录用法
+            //（1）FormMain是类名称
+            //（2）第二个参数是需要捕捉的异常块
+            //try { 
+            //}catch(Exception ex){
+            //    LogHelper.WriteLog(typeof(FormMain), ex);
+            //}
         }
     }
 }
